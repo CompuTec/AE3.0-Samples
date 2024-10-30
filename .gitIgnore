@@ -1,0 +1,24 @@
+# Ignore all obj, bin, and packages folders
+**/obj/
+**/bin/
+**/packages/
+
+# Ignore IDE and editor-related files
+*.suo
+*.user
+.idea/
+.vs/
+.vsconfig
+.editorconfig
+
+# Ignore generated code files
+*.g.cs
+*.generated.cs
+
+# Project-specific exclusions
+
+
+# Ignore other files
+*.htm
+.NugetPack
+Binaries/

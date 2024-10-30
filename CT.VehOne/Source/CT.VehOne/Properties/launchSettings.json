@@ -1,0 +1,15 @@
+{
+  "profiles": {
+     
+    "Default": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\CompuTec AppEngine\\CompuTec.AppEngine.Host.DevApp.core.exe",
+      "workingDirectory": "C:\\Program Files\\CompuTec AppEngine",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "default",
+        "CT_DEBUG": "C:\\git\\core\\SampleApp\\CT.VehOne\\Source\\CT.VehOne\\Properties\\DevAeConvig.config.json"
+        
+      }
+    }
+  }
+}
