@@ -9,6 +9,7 @@
         <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     </PropertyGroup>
     <Import Project="..\Global\SapUiDependencies.Props"/>
+    
     <ItemGroup>
         <PackageReference Include="CompuTec.SourceCodeGenerators" Version="$(CTCoreVersion)" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>

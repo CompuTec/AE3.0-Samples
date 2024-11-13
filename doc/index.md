@@ -21,9 +21,17 @@ Example application can be found in [github]()
 - [Connection Properties](connectionProperties.md)
 - [User interface UI Model](BusinessLogicUiModel.md)
 - [Events](UiEvents.md)
-- transations
+- [Forms](UiForms.md)
+- [Form transations](fromTranslations.md)
 - [ActiveX setup](AciveXInsallationGuide.md)
 # AppEngine Plugin
 - [Set up web Model generator](generator.md)
+- [Extending the Generated Controlers](extendAEControlers.md)
+- [Creating Own Controlers](extendAEControlers.md)
 - [Jobs](AeJobs.md)
 - [Hosting web content in sap UI](AEContentInSAPUIs.md)
+- [Simple Views](simpleView.md)
+- [SAP UI 5 in AppEngine](AEUI.md)
+
+# Dev tool
+[dotnet ct](CTTool.md)

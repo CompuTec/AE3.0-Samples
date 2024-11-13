@@ -21,10 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Jobs\" />
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Remove="www\dist\**"/>
         <Compile Remove="www\node_modules\**"/>
         <Compile Remove="www\src\**"/>
@@ -36,6 +32,24 @@
         <None Remove="www\dist\**"/>
         <None Remove="www\node_modules\**"/>
         <None Remove="www\Tests\**"/>
+        <EmbeddedResource Update="Resources\HanaQueries.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>HanaQueries.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <Compile Update="Resources\HanaQueries.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>HanaQueries.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Update="Resources\MssqlResources.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>MssqlResources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <Compile Update="Resources\MssqlResources.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>MssqlResources.resx</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>

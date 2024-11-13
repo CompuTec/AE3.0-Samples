@@ -1,8 +1,13 @@
-Creating a guide for configuring and validating a `PluginDescription` entity through a JSON manifest provides a straightforward way for users to specify plugin characteristics and dependencies. This documentation outlines the fields that can be defined in the JSON manifest, their expected values, and the logic behind their validation.
 
-### PluginDescription JSON Configuration
+# PluginDescription JSON Configuration
 
-The JSON manifest for a plugin is structured to provide detailed information about the plugin, its dependencies, and how it integrates with the larger application ecosystem. Below is an example structure with explanations for each field:
+This guide provides instructions for configuring and validating a `PluginDescription` entity through a JSON manifest. It enables users to specify plugin characteristics, dependencies, and validation rules for integrating plugins into an application.
+
+The file must be called **manifest.json**
+
+## PluginDescription JSON Structure
+
+The JSON manifest for a plugin provides detailed information about the plugin, its dependencies, and how it integrates with the application ecosystem. Here’s an example structure with field descriptions:
 
 ```json
 {
@@ -27,32 +32,31 @@ The JSON manifest for a plugin is structured to provide detailed information abo
 }
 ```
 
-### Field Descriptions and Validation Rules
+## Field Descriptions and Validation Rules
 
-- **PluginCode** (required): The unique code for the plugin. This must be a non-empty string.
-- **PluginName** (required): The name of the plugin. This must be a non-empty string.
-- **Icon** (optional): Specifies the icon for the plugin, often provided as a URI or a reference to an icon library.
-- **Assembly** (required): The filename of the assembly that contains the plugin. This must be a non-empty string.
+- **PluginCode** (required): The unique code for the plugin. Must be a non-empty string.
+- **PluginName** (required): The name of the plugin. Must be a non-empty string.
+- **Icon** (optional): Specifies the icon for the plugin, often as a URI or a reference to an icon library.
+- **Assembly** (required): The filename of the assembly containing the plugin. Must be a non-empty string.
 - **Company** (optional): The name of the company or individual who owns the plugin.
-- **PluginVersion** (required): The version of the plugin, following semantic versioning. Must be a valid `CTVersion` format.
-- **Remarks** (optional): Additional information or comments about the plugin.
-- **ReadmeFile** (optional): The path to the README file for the plugin.
-- **ReleaseNotes** (optional): The path to the release notes file for the plugin.
-- **DocumentationLink** (optional): A URL pointing to the plugin's documentation.
-- **PluginType** (required): The type of plugin, which must be one of the following: `Standalone`, `BusinessLogic`, `AppEnginePlugin`, `SapUserInterface`, `Other`.
-- **MinimumCoreLevel** (required): The minimum version of the core application required for the plugin to work. Must be a valid `CTVersion` format.
-- **Dependencies** (optional): An array of objects specifying the dependencies of the plugin. Each dependency object must include:
-    - **PluginCode**: The code of the dependent plugin.
-    - **minVersion**: The minimum version of the dependent plugin required.
-### Plugin Type
+- **PluginVersion** (required): Version of the plugin, following semantic versioning (must be in a valid `CTVersion` format).
+- **Remarks** (optional): Additional information about the plugin.
+- **ReadmeFile** (optional): Path to the README file for the plugin.
+- **ReleaseNotes** (optional): Path to the release notes file for the plugin.
+- **DocumentationLink** (optional): A URL pointing to the plugin’s documentation.
+- **PluginType** (required): Type of plugin, which must be one of the following: `Standalone`, `BusinessLogic`, `AppEnginePlugin`, `SapUserInterface`, `Other`.
+- **MinimumCoreLevel** (required): Minimum version of the core application required for the plugin (must follow `CTVersion` format).
+- **Dependencies** (optional): Array of objects specifying the plugin dependencies, where each object includes:
+    - **PluginCode**: The dependent plugin's code.
+    - **minVersion**: Minimum required version of the dependent plugin.
 
-The `PluginType` field in the `PluginDescription` entity specifies the category of the plugin, affecting how it is deployed, integrated, and utilized within the application ecosystem. This categorization is crucial for understanding plugin compatibility, dependencies, and the appropriate execution environment.
+## Plugin Type
 
-#### Conversion Logic
+The `PluginType` field categorizes the plugin, determining how it’s deployed, integrated, and used within the application ecosystem.
 
-Conversion between string representations and `ApplicationTypes`
+### Conversion Logic
 
-The following table outlines the supported plugin types, their descriptions, and acceptable string representations:
+Conversion between string representations and `ApplicationTypes` enum values ensures compatibility across different environments. Below is a table with the supported plugin types, descriptions, and acceptable string representations:
 
 | Plugin Type Description | `ApplicationTypes` Enum Value | Acceptable String Representations |
 |-------------------------|-------------------------------|-----------------------------------|
@@ -62,12 +66,11 @@ The following table outlines the supported plugin types, their descriptions, and
 | App Engine Plugin       | AppEnginePlugin               | "AePlugin", "plugin", "AEComponent", "AppEnginePlugin" |
 | Other                   | Other                         | "Other"                           |
 
+## Validation Logic
 
-### Validation Logic
+- **PluginCode** and **Assembly** fields must not be empty. `PluginCode` serves as a unique identifier, while `Assembly` specifies the main assembly.
+- **PluginVersion** and **MinimumCoreLevel** must be in a valid version format to ensure correct handling of version dependencies. Follows [Semantic Versioning](https://semver.org/).
+- **PluginType** must match one of the predefined types for correct integration into the application ecosystem.
+- **Dependencies** (if specified): Each dependency must include both `PluginCode` and `minVersion` to verify compatibility with necessary components.
 
-- **PluginCode** and **Assembly** fields must not be empty. The `PluginCode` serves as a unique identifier, and the `Assembly` field specifies the main assembly for the plugin.
-- **PluginVersion** and **MinimumCoreLevel** must be provided in a valid version format, which allows the system to correctly handle version dependencies and compatibility checks. The versionning maches the [Semantic Versionning standard](https://semver.org/)
-- The **PluginType** field must match one of the predefined types. This ensures the plugin can be correctly integrated into the application ecosystem.
-- If **Dependencies** are specified, each dependency must include both a `PluginCode` and a `minVersion`, ensuring that all necessary components are present and at the correct version for the plugin to function properly.
-  Adding a detailed section on Plugin Types and their conversion will provide clarity on how plugins are categorized and how these categories are transformed and interpreted within the system, particularly for serialization/deserialization processes and NuGet package management.
-
+> Adding a detailed section on Plugin Types and their conversion helps clarify plugin categorization and transformation within the system, especially for serialization/deserialization and NuGet package management.

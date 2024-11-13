@@ -40,8 +40,6 @@
     "Plugins": [ 
       "C:\\git\\core\\SampleApp\\CT.VehOne\\Source\\CT.VehOne\\dev.config.json"
     ]
-    
-  },
-  "AppEngineInstance": "E36AD3C3-D172-4FDA-B19E-0E0A0ED195E6",
-  "DefaultAppEngineInstanceName": "Developemt From Sources Example"
+  }
+ 
 }

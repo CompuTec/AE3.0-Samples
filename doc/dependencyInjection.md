@@ -3,36 +3,41 @@
 
 ## Scopes - Basics
 
-The entire framework uses an IoC (Inversion of Control) approach, allowing it to handle multiple connections to different databases simultaneously. A separate scope service collection is created for each connection, and as connections may vary by database (due to different enabled plugins), implementation and registrations can be handled differently per connection.
+The CompuTec.Core2 framework utilizes an IoC (Inversion of Control) approach, allowing it to handle multiple connections to different databases simultaneously. A separate scoped service collection is created for each connection, enabling unique handling and registrations per connection.
+
+### Main Levels of Registration
 
 There are three main levels of registrations available for developers:
 
-1. **Application Level**: This primary level scope is created once when the application starts. This container acts as the base container for all other scopes, meaning that services registered at the application level are available to all connections across databases. For instance, a singleton service registered here, like a cache, will be accessible for each company and each connection.
+1. **Application Level**: Created once at application startup, this primary level scope serves as the base container for all other scopes. Services registered here, like singletons, are accessible across all connections and databases.
 
-2. **Company Level**: While not a physical scope (own IoC container), this level allows registering a singleton service on the company level, shared across connections for each database.
+2. **Company Level**: Although not a distinct physical scope, this level allows for registering services that are shared across all connections for a specific database.
 
-3. **Connection Level**: The default scope where most registrations occur.
+3. **Connection Level**: The default scope where most registrations occur, specific to each database connection.
 
 ---
 
-## Registration
+## Registration Methods
 
 ### 1. By Attribute (Default and Most Common Way)
 
-You can register a service using an IoC attribute with the following parameters:
+Register a service using an IoC attribute with the following parameters:
 
-- **Scope**: Choose between Application, Company, or Connection as described above.
-- **Singleton**: Set to true or false.
-- **ReferenceType**: The type with which the annotated implementation will be registered.
-- **Named**: Specify the name of the named implementation, if required.
+- **Scope**: Choose between Application, Company, or Connection.
+- **Singleton**: Set to `true` or `false`.
+- **ReferenceType**: The type under which the implementation is registered.
+- **Named**: Specifies the name of the named implementation if needed.
 
 ### 2. By Plugin Information
 
-This version of AppEngine uses the Autofac IoC framework, so all registrations follow this approach. To register services in the application scope, override the `BuildAppContainer` method. For company scope registration, override the `BuildConnectionContainer` method, ensuring you call the base method in each.
+Using the Autofac IoC framework, registrations can be customized by overriding methods:
+
+- **Application Scope**: Override the `BuildAppContainer` method.
+- **Company Scope**: Override the `BuildConnectionContainer` method, ensuring you call the base method.
 
 ### 3. On Application Startup
 
-This mode is used only if creating a custom application that utilizes the CompuTec Core2 framework.
+Use this method only if creating a custom application that incorporates the CompuTec Core2 framework.
 
 ---
 
@@ -40,7 +45,7 @@ This mode is used only if creating a custom application that utilizes the CompuT
 
 ### On the Connection
 
-To create an instance of a registered object on the connection level, reference the `ICoreConnection` object and call the `GetService<T>()` method. Alternatively, use the `IServiceProvider` class from `Microsoft.Extensions.DependencyInjection.Abstractions` to resolve IoC services.
+To create an instance of a registered object on the connection level, reference the `ICoreConnection` object and call `GetService<T>()`. Alternatively, use `IServiceProvider` from `Microsoft.Extensions.DependencyInjection.Abstractions` to resolve IoC services.
 
 ### Example
 
@@ -52,7 +57,7 @@ public interface IVehicleInformationService
     bool AddOwner(string vehicleCode, string ownerName);
 }
 
-[Ioc(Scope= IocScope.Connection, ReferenceType = typeof(IVehicleInformationService))]
+[Ioc(Scope = IocScope.Connection, ReferenceType = typeof(IVehicleInformationService))]
 internal sealed class VehicleInformationService : IVehicleInformationService
 {
     private readonly ICoreConnection _coreConnection;
@@ -104,4 +109,4 @@ internal sealed class VehicleInformationService : IVehicleInformationService
 }
 ```
 
-This example illustrates how to define and implement an IoC-based service in the CompuTec.Core2 framework, ensuring proper logging and OpenTelemetry measurement creation during method execution.
+This example demonstrates defining and implementing an IoC-based service in the CompuTec.Core2 framework, with logging and OpenTelemetry measurement integration.

@@ -45,6 +45,12 @@ internal sealed partial class VechicleMasterDataBean : MasterDataBean, IVehicleM
         _logger.LogDebug("Value changing {property}", eventargs.PropertyName);
     }
 
+    public override bool CanDelete()
+    {
+        throw new CanootRemoveVehicleMasterDaataException();
+        return false;
+    }
+
     public IVechickePreviusOwners Owners
     {
         get=>GetChild<IVechickePreviusOwners>(__ownerLines);
@@ -81,7 +87,7 @@ internal sealed partial class VechicleMasterDataBean : MasterDataBean, IVehicleM
 
     private void ValiddateDuplicatedOwnerNames()
     {
-        var invalid=Owners.Where(p=>p.IsRowFilled()).GroupBy(p=>p.U_OwnerName.ToUpper()).Count()>1;
+        var invalid=Owners.Where(p=>p.IsRowFilled()).GroupBy(p=>p.U_OwnerName.ToUpper()).Any(P=>P.Count()>1);
         if(invalid)
             throw new Exception(_translationService.GetTranslatedMessage("VehOne.DuplicatedPrevOwners"));
     }
@@ -100,4 +106,6 @@ internal sealed partial class VechicleMasterDataBean : MasterDataBean, IVehicleM
         if(string.IsNullOrEmpty(U_Model))
             throw new Exception(_translationService.GetTranslatedMessage("VehOne.ModelIsMissing"));
     }
+
+    
 }

@@ -8,3 +8,4 @@ global using CompuTec.BaseLayer.Connection;
 global using CompuTec.Core2.Translations;
 global using CompuTec.Core2.UI.Beans;
 global using Microsoft.Extensions.Logging;
+global using SAPbouiCOM;

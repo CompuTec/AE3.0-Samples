@@ -2,7 +2,7 @@
   "ConnectionProperties": {
     "FORMCachingDisabled": true,
     "FofseDbStructureCheckOnConnectionInitialization": true,
-    "ExecuteSetupOnUI": true
+    "PluginDirectory": ""
   },
   "DevelopmentConfiguration": {
     "Enabled": true,

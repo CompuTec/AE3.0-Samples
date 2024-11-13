@@ -1,4 +1,4 @@
-Message Translations:
+#Message Translations:
 It applys for all the plugin types 
 you can define translation.xml file that will hold all the message translations that later can be used in the all plugins 
 
@@ -64,4 +64,32 @@ public MyPluginInfo()
     TranslationDescription="www.mytranslation.xml"
     TranslationDescription.TranslationInvoker = getTranslationsFromWWW;
 }
+```
+
+## Using Translations in code
+```csharp
+
+internal class MyService
+{
+
+  	private readonly  Application _application;
+  private readonly ITrasnlationService _translationSercie;
+  public MyService (ITrasnlationService translationSercie,AppHolder appHolder)
+  {
+      _translationSercie=translationSercie;
+      _applcation= appHolder.App ;
+  }
+  public void MyMeod()
+  {
+      _applcation.MessageBox(_translationSercie.GetTranslatedMessage("CT_XX_MyTrasnId");
+  }
+}
+```
+you can also get the service from **ICoreConnection**
+```csharp
+public void MyMeod()
+  {
+      var trService= _coreConnection.GetSerivce<ITrasnlationService>();
+      _applcation.MessageBox(trService.GetTranslatedMessage("CT_XX_MyTrasnId");
+  }
 ```

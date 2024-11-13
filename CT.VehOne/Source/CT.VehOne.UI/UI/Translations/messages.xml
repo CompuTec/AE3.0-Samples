@@ -36,5 +36,34 @@
 		<translation lang="ln_English" >Linked Vehicle</translation>
 		<translation lang="ln_Polish" >Połączony pojazd</translation>
 	</Message>
-	
+	<Message id="CT_VO_ContextMn1Desctiption" param="0" >
+		<translation lang="Default" >Menu 1 </translation>
+		<translation lang="ln_English" >Menu 1</translation>
+		<translation lang="ln_Polish" >Menu 1</translation>
+	</Message>
+	<Message id="CT_VO_ContextMn2Desctiption" param="0" >
+		<translation lang="Default" >Menu 2 </translation>
+		<translation lang="ln_English" >Menu 2</translation>
+		<translation lang="ln_Polish" >Menu 2</translation>
+	</Message>
+	<Message id="CT_VO_ContextMn3Desctiption" param="0" >
+		<translation lang="Default" >Menu 3 </translation>
+		<translation lang="ln_English" >Menu 3</translation>
+		<translation lang="ln_Polish" >Menu 3</translation>
+	</Message>
+	<Message id="CT_VO_ContextMn4Desctiption" param="0" >
+		<translation lang="Default" >Menu 4 </translation>
+		<translation lang="ln_English" >Menu 4</translation>
+		<translation lang="ln_Polish" >Menu 4</translation>
+	</Message>
+	<Message id="CT_VO_ContextMn5Desctiption" param="0" >
+		<translation lang="Default" >Menu 5 </translation>
+		<translation lang="ln_English" >Menu 5</translation>
+		<translation lang="ln_Polish" >Menu 5</translation>
+	</Message>
+	<Message id="CT_VO_ContextSMn1Desctiption" param="0" >
+		<translation lang="Default" >Sub menu </translation>
+		<translation lang="ln_English" >Sub menu</translation>
+		<translation lang="ln_Polish" >Sub Menu</translation>
+	</Message>
 </messageTranslations>

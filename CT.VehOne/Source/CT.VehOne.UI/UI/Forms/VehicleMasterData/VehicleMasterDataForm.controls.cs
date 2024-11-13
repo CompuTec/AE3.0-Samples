@@ -19,7 +19,9 @@ partial class  VehicleMasterDataForm
         public const string ContextSeparator="CT_VO_S1";
         public const string ContextMenu2="CT_VO_M2";
         public const string ContextMenu3="CT_VO_M3";
+        public const string ContextMenu4="CT_VO_M4";
+        public const string ContextMenu5="CT_VO_M5";
         
-        
+        public const string SubMenu = "CT_VO_SM1";
     }
 }

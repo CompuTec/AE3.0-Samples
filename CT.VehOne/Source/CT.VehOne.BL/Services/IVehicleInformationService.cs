@@ -1,6 +1,7 @@
 using CompuTec.Core2.Beans;
 using CompuTec.Core2.DI.Database;
 using CT.VehOne.BL.BusinessEntities.VehicleMastrData;
+using CT.VehOne.BL.Enumerators;
 using Microsoft.Extensions.Logging;
 
 namespace CT.VehOne.BL.Services;
@@ -12,6 +13,7 @@ public interface IVehicleInformationService
     string GetVehicleName(string code);
     bool ChangeVehicleNameForVehicle(string code, string name);
     bool AddOwner(string vechicleCode, string ownerName);
+    bool CreateDefaultVehicle(string code, string name);
 }
 
 [Ioc(Scope= IocScope.Connection,ReferenceType = typeof(IVehicleInformationService))]
@@ -64,5 +66,18 @@ internal sealed class VehicleInformationService : IVehicleInformationService
             udo.Owners.Add();
         udo.Owners.U_OwnerName = ownerName;
         return udo.Update()==0;
+    }
+
+    public bool CreateDefaultVehicle(string code, string name)
+    {
+        using var measure = _logger.CreateMeasure();
+        var udo= _coreConnection.GetService<IVehicleMasterData>();
+        udo.Code = code;
+        udo.Name = name;
+        udo.U_VIN = Guid.NewGuid().ToString();
+        udo.U_Model="Default";
+        udo.U_RegistrationNumber="Default";
+        udo.U_Type = VechicleType.Car;
+        return udo.Add()==0;
     }
 }
