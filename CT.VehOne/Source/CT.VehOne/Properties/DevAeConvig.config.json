@@ -1,8 +1,4 @@
 {
-  "ConnectionStrings": {
-    "DefaultDbProvider": "Hana",
-    "DefaultConnection": "Database=DEV;server=hanadev:30013;uid=SYSTEM;password=CTsa*2020;current Schema=CTAPPDATA"
-  },
   "Logging": {
     "LogLevel": {
       "Default": "Information",
@@ -14,27 +10,9 @@
     },
     "Debug": {
       "IncludeScopes": true
-    },
-    "NLog": {
-      "IncludeScopes": true,
-      "RemoveLoggerFactoryFilter": false
     }
   },
-  "NLog": {
-    "targets": {
-      "file": {
-        "type": "File",
-        "fileName": "${specialfolder:folder=CommonApplicationData:cached=true}\\CompuTec\\AppEngine\\Logs\\DEV-${username}-${shortdate}.log"
-      }
-    },
-    "Rules": [
-      {
-        "logger": "*",
-        "minLevel": "Trace",
-        "writeTo": "file"
-      }
-    ]
-  },
+ 
   "DevelopmentConfiguration": {
     "Enabled": true,
     "Plugins": [ 
