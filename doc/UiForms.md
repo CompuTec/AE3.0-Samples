@@ -85,7 +85,7 @@ instead of manually resize metchodod please use the resize element in the xml
 #### ActiveItem
 this element will set the active item on the form when the form changes the mode. 
 its a good practice that on master data documents when in find mode active item is set to Code field, and on document DocNum Field.
-## Opening Forms
+## Opening UDO Forms (yellow arrow)
 
 For Opening UDO Forms Please use `IFormOpener` service 
 ```csharp

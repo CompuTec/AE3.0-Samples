@@ -1,7 +1,4 @@
-using System.Net.Sockets;
-using CompuTec.Core2.DI.Tools;
-using CompuTec.Core2.UI.Attributes;
-using CompuTec.Core2.UI.Events;
+
 using CT.VehOne.BL.BusinessEntities.VehicleMastrData;
 using SAPbouiCOM;
 

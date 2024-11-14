@@ -1,6 +1,5 @@
 using CompuTec.BaseLayer.Services;
 using CompuTec.Core2.Beans;
-using CompuTec.Core2.Exceptions;
 using CompuTec.Core2.UI.Attributes;
 using CompuTec.Core2.UI.Events;
 using CompuTec.Core2.UI.Events.Helpers;

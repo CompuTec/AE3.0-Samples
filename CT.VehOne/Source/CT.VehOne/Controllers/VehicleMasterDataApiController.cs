@@ -1,4 +1,4 @@
-using CompuTec.Core2.Beans;
+
 using CT.VehOne.Controllers.Api.Models;
 using CT.VehOne.Models.VehicleMastrData;
 using Microsoft.AspNetCore.Mvc;

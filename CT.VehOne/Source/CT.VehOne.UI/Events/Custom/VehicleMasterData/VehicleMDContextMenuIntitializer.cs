@@ -1,7 +1,4 @@
-using CompuTec.Core2.Beans;
-using CompuTec.Core2.UI.Attributes;
-using CompuTec.Core2.UI.Events;
-using CompuTec.Core2.UI.Events.Helpers;
+
 using CT.VehOne.BL.BusinessEntities.VehicleMastrData;
 using CT.VehOne.UI.UI.Forms.VehicleMasterData;
 

@@ -1,4 +1,3 @@
-using CompuTec.Core2.Beans;
 using CT.VehOne.Controllers.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;

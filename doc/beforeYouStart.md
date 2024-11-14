@@ -7,3 +7,4 @@ Open command prompt and type the following command
 ```batch
 dotnet new install CompuTec.AppEngine.Templates
 ```
+## about the plugins 

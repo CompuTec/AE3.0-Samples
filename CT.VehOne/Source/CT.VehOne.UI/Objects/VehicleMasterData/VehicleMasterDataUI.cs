@@ -1,9 +1,7 @@
 
-using CompuTec.Core2.UI.Attributes;
 using CT.VehOne.BL.BusinessEntities.VehicleMastrData;
 using CT.VehOne.UI.Services;
 using CT.VehOne.UI.UI.Forms.VehicleMasterData;
-using SAPbouiCOM;
 
 
 namespace CT.VehOne.UI.Objects.VehicleMasterData

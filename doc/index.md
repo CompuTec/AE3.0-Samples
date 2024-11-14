@@ -3,6 +3,8 @@
 
 Example applications can be found in [GitHub]()
 
+Plugins are libraries managed in the AppEngine administration panel. They can be downloaded and installed for each company. Each plugin must include a unique code, name, and version, and may have dependent plugins. The installation process handles all plugin dependencies automatically. To describe plugin requirements, use the `manifest.json` file. Web-based plugins are hosted in the AppEngine application, and SAP User Interface plugins are hosted by a SAP B1 add-on installed on the SAP client.
+
 ## Plugin Types
 
 | Plugin Type Description | `ApplicationTypes` Enum Value | Acceptable String Representations | Core References       | PluginInfo Base Class |
@@ -16,7 +18,7 @@ Example applications can be found in [GitHub]()
 ## Framework Documentation
 
 - [About Framework](aboutframework.md)
-- [Before you Start](beforeYouStart.md)
+- [Before You Start](beforeYouStart.md)
 - [Dependency Injection](dependencyInjection.md)
 - [Manifest](manifest.md)
 - [Database Structure Setup](DatabaseStructureSetup.md)
@@ -36,8 +38,8 @@ Example applications can be found in [GitHub]()
 ## AppEngine Plugin
 
 - [Set Up Web Model Generator](generator.md)
-- [Extending the generated controllers](ExtendUdoControllers.md)
-- [Creating controllers](AEControlers.md)
+- [Extending Generated Controllers](ExtendUdoControllers.md)
+- [Creating Controllers](AEControlers.md)
 - [Jobs](AeJobs.md)
 - [Hosting Web Content in SAP UI](AEContentInSAPUIs.md)
 - [Simple Views](simpleView.md)
@@ -47,3 +49,4 @@ Example applications can be found in [GitHub]()
 
 - [dotnet ct](CTTool.md)
 - [Debugging Your Code](DebuggingConfiguration.md)
+  - [dev.config.json](dev.config.json.md)

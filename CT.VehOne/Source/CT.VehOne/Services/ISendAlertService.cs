@@ -1,7 +1,5 @@
-using CompuTec.BaseLayer;
-using CompuTec.BaseLayer.Connection;
+
 using CompuTec.BaseLayer.DI;
-using Microsoft.Extensions.Logging;
 
 namespace CT.VehOne.Services;
 
