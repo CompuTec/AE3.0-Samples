@@ -52,4 +52,4 @@ To access services, use `SecureScopeService<T>`.
 
 All controllers, including minimal API controllers, are visible in Swagger:
 
-![Swagger Integration](image.png)
+![Swagger Integration](pic/image.png)

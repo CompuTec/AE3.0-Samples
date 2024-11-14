@@ -29,7 +29,7 @@ partial class VehicleMasterDataApiController
 
 All controllers are visible in Swagger:
 
-![alt text](\pic\AddOwner.png)
+![alt text](pic/AddOwner.png)
 
 ## Extending OData Controllers
 
@@ -83,4 +83,4 @@ public async Task<IActionResult> AddOwner([FromODataUri] string key, ODataAction
 
 All controllers are visible in Swagger:
 
-![alt text](\pic\AddOwnerOdata.png)
+![alt text](pic/AddOwnerOdata.png)
