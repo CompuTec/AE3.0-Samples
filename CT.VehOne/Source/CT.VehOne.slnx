@@ -9,6 +9,10 @@
     <File Path="Global\AEPluginDependencies.Props" />
     <File Path="Global\SapUiDependencies.Props" />
   </Folder>
+  <Folder Name="/Requests/">
+    <File Path="Requests\requests.rest" />
+    <File Path="Requests\http-client.env.json" />
+  </Folder>
   <Project Path="CT.VehOne.BL\CT.VehOne.BL.csproj" Type="Classic C#" />
   <Project Path="CT.VehOne.UI\CT.VehOne.UI.csproj" Type="Classic C#" />
   <Project Path="CT.VehOne\CT.VehOne.csproj" Type="Classic C#" />

@@ -12,7 +12,7 @@
     "XmlTranslationFile":"CT.VehOne.UI.Translations.messages.xml."
   },
   "api": {
-    "routePrefix": " CTVehOne",
+    "routePrefix": "CTVehOne",
     "assemblies": [
     ],
     "dependencies": {

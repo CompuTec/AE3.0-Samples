@@ -33,4 +33,4 @@ It is recommended to include this step in the SAP UI project to automatically tr
 
 ## Tips
 
-When working with forms, add `FORMCachingDisabled` in the [connectionProperties](connectionProperties.md) configuration. This ensures that files in `computec.start` are not cached, allowing the default form from the output directory to load in the UI every time.
+When working with forms, add `FORMCachingDisabled` in the [connectionProperties](ConnectionProperties.md) configuration. This ensures that files in `computec.start` are not cached, allowing the default form from the output directory to load in the UI every time.
