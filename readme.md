@@ -22,5 +22,5 @@
     * Jobs
     * Web UI forms
   
-Documentation [link](\doc\index.md)
+Documentation [link](doc/index.md)
   
