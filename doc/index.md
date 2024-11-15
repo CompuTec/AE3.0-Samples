@@ -41,7 +41,7 @@ Plugins are libraries managed in the AppEngine administration panel. They can be
 - [Extending Generated Controllers](ExtendUdoControllers.md)
 - [Creating Controllers](AEControlers.md)
 - [Jobs](AeJobs.md)
-- [Hosting Web Content in SAP UI](AEContentInSAPUIs.md)
+- [Hosting Web Content in SAP Business One](AEContentInSAPUIs.md)
 - [Simple Views](simpleView.md)
 - [SAP UI 5 in AppEngine](AEUI.md)
 
