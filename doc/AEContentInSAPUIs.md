@@ -1,15 +1,15 @@
 
-# Specifying JSON Configurations for UI Entities
+# JSON Configurations for SAP Business One Application Menu and Context Menu
 
-To provide guidance on how to specify values for UI entities in JSON and understand the validation logic, each entity's structure and validation requirements are outlined below. This information is crucial for correctly preparing JSON configurations.
+This document provides a structure for configuring menu and context menu entries in SAP Business One. These entries can open web-based pages and applications, allowing integration with external resources. Through these configurations, you can add a main menu or context menu to existing forms, extract data from those forms, validate the data, generate URLs, and open web content within SAP Business One.
 
 ## General Structure
 
-Each UI entity (`UiDescription`, `UICondition`, `UIParameter`) should be represented as a JSON object. The fields within each object represent properties of that entity, and the values assigned to those fields must adhere to the rules outlined below.
+Each UI entity (`UiDescription`, `UICondition`, `UIParameter`) is represented as a JSON object. The fields within each object define properties of that entity, and the values must follow the specified rules.
 
-## UiDescription
+### UiDescription
 
-This is the main entity that describes a UI element, such as a form, context menu, or analysis. The JSON for a `UiDescription` might look like this:
+Defines a UI element like a form, context menu, or analysis item. Here’s an example structure:
 
 ```json
 {
@@ -18,7 +18,7 @@ This is the main entity that describes a UI element, such as a form, context men
   "MenuUid": "unique_sales_order",
   "Url": "https://example.com",
   "MenuCaption": "Sales Order",
-  "MenuCationTranslationId": "Menu_Translation_Id",
+  "MenuCaptionTranslationId": "Menu_Translation_Id",
   "TitleTranslationId": "Title_Translation_Id",
   "Title": "Sales Order",
   "Condition": { ... },
@@ -26,40 +26,40 @@ This is the main entity that describes a UI element, such as a form, context men
 }
 ```
 
-- **Type** (required): Can be `"Form"`, `"ContextMenu"`, or `"Analytics"`. Determines the type of UI element.
-- **FormType**: Unique identifier for forms. Required if `Type` is `"ContextMenu"`.
-- **MenuUid** (required): A unique identifier for the UI element.
-- **FatherMenuUid**: Required if `Type` is `"Form"`. It specifies the parent element.
-- **Url** (required): The URL associated with the UI element.
-- **InternalUrl**: The internal URL associated with the Plugin (hosted in AppEngine plugin).
-- **MenuCaption**: Required for `"ContextMenu"` and `"Form"` types. It's the text displayed in the menu.
-- **Title**: The title of the UI element. Required for all types.
-- **Condition**: An object that specifies conditions for the UI element's visibility. It's required for `"ContextMenu"`.
-- **Parameters**: An array of `UIParameter` objects that define parameters used by the UI element.
-- **MenuCationTranslationId**: Translation ID for the `MenuCaption`.
-- **TitleTranslationId**: Translation ID for the `Title`.
+- **Type** (required): Specifies `"Form"`, `"ContextMenu"`, or `"Analytics"` to define the UI element type.
+- **FormType**: Unique identifier for forms; required for `Type` set to `"ContextMenu"`.
+- **MenuUid** (required): Unique identifier for the UI element.
+- **FatherMenuUid**: Specifies the parent element; required if `Type` is `"Form"`.
+- **Url** (required): URL associated with the UI element.
+- **InternalUrl**: Internal URL for a Plugin hosted in AppEngine.
+- **MenuCaption**: Display text in the menu; required for `"ContextMenu"` and `"Form"`.
+- **Title**: UI element title; required for all types.
+- **Condition**: Specifies visibility conditions for `"ContextMenu"`.
+- **Parameters**: Array of `UIParameter` objects defining parameters.
+- **MenuCaptionTranslationId**: Translation ID for `MenuCaption`.
+- **TitleTranslationId**: Translation ID for `Title`.
 
-## UICondition
+### UICondition
 
-Specifies conditions under which a UI element is visible or available. A `UICondition` JSON might look like:
+Specifies conditions for UI element visibility. Example structure:
 
 ```json
 {
   "SuppFormMode": 1,
   "ItemUid": "item_1",
   "RequiredPlugin": "plugin_code",
-  "SQlCondition": "SELECT 1 WHERE EXISTS (SELECT * FROM table WHERE condition)"
+  "SQLCondition": "SELECT 1 WHERE EXISTS (SELECT * FROM table WHERE condition)"
 }
 ```
 
-- **SuppFormMode** (required): An integer representing the form modes. Must be between -1 and 15.
-- **ItemUid**: Specifies the item UID for which the menu is available when clicked.
-- **SQlCondition**: A SQL query that, when returns an integer 1, makes the menu available. Parameters in the query must match those defined in the `Parameters` array.
-- **RequiredPlugin**: The Plugin Code that is required to be enabled for this menu to be available.
+- **SuppFormMode** (required): Integer for form modes, from -1 to 15.
+- **ItemUid**: Specifies the item UID for menu availability.
+- **SQLCondition**: SQL query that returns `1` if the menu should be available; parameters must match those defined in `Parameters`.
+- **RequiredPlugin**: Plugin Code required for the menu to be available.
 
-## UIParameter
+### UIParameter
 
-Defines parameters used by the UI element. A `UIParameter` JSON object might look like:
+Defines parameters for the UI element. Example structure:
 
 ```json
 {
@@ -72,34 +72,34 @@ Defines parameters used by the UI element. A `UIParameter` JSON object might loo
 }
 ```
 
-- **Name** (required): The name of the parameter.
-- **Type** (required): The type of the parameter (`string`, `int`, `float`, `date` are available).
-- **Row**: A boolean indicating if the parameter's value comes from the current row (`true`) or the first row (`false`).
-- **TableName**: Required unless `SQLTransformQuery` is provided. Specifies the table from which the parameter's value is retrieved if Row is false.
-- **ColumnName**: Required unless `SQLTransformQuery` is provided. Specifies the column from which the parameter's value is retrieved.
-- **SQLTransformQuery**: An optional SQL query that overrides `TableName` and `ColumnName`. It must use parameters listed in the `Parameters` array.
+- **Name** (required): Parameter name.
+- **Type** (required): Parameter type (`string`, `int`, `float`, `date`).
+- **Row**: Boolean indicating if the value comes from the current row (`true`) or first row (`false`).
+- **TableName**: Required unless `SQLTransformQuery` is provided; specifies table source for parameter value.
+- **ColumnName**: Required unless `SQLTransformQuery` is provided; specifies column source for parameter value.
+- **SQLTransformQuery**: Optional SQL query to override `TableName` and `ColumnName`.
 
-## Validation Logic
+### Validation Logic
 
-- All required fields must be provided.
-- `FormType`, `MenuCaption`, and `MenuUid` are required based on the `Type` of the UI element.
-- `SuppFormMode` in `UICondition` must be between -1 and 15. It is a mask of form modes:
+- **Required Fields**: All required fields must be provided.
+- **Type-Specific Fields**: Fields such as `FormType`, `MenuCaption`, and `MenuUid` are required depending on the UI element type.
+- **SuppFormMode**: Value must be from -1 to 15:
   - -1: Always visible
   - 1: OK
   - 2: Add
   - 4: Find
   - 8: View
-  
-- `SQLTransformQuery` in both `UIParameter` and `UICondition` must only use parameters that are defined in the `Parameters` array of the `UiDescription`.
-- For `ContextMenu` type, both `MenuCaption` and `FormType` are required, and a `Condition` must be provided.
 
-Ensure that the JSON configurations prepared for these entities adhere to the above specifications and validation rules to avoid errors and ensure the correct functioning of the UI elements.
+- **SQLTransformQuery**: Should use only parameters defined in the `Parameters` array of the `UiDescription`.
+- **ContextMenu Requirements**: `MenuCaption`, `FormType`, and `Condition` must be provided.
 
-## Examples
+Ensure JSON configurations meet these specifications and validation rules for error-free, functional UI elements.
 
-### Example 1: Context Menu on Sales Order Form
+### Examples
 
-This context menu for a selected row checks if the `ItemCode` starts with "A" and opens a Google search for the item code.
+#### Example 1: Context Menu on Sales Order Form
+
+This context menu is displayed for a selected row if the `ItemCode` starts with "A" and opens a Google search for the item code.
 
 ```json
 {
@@ -112,7 +112,7 @@ This context menu for a selected row checks if the `ItemCode` starts with "A" an
   "Url": "https://www.google.com/search?q=@ItemCode",
   "Condition": {
     "SuppFormMode": -1,
-    "SQlCondition": "select case when Left(@ItemCode,1) ='A' then 1 else 0 end FROM DUMMY",
+    "SQLCondition": "SELECT CASE WHEN LEFT(@ItemCode, 1) = 'A' THEN 1 ELSE 0 END FROM DUMMY",
     "ItemUid": "38"
   },
   "Parameters": [
@@ -127,9 +127,9 @@ This context menu for a selected row checks if the `ItemCode` starts with "A" an
 }
 ```
 
-### Example 2: Context Menu on Item Master Data
+#### Example 2: Context Menu on Item Master Data
 
-This context menu on the Item Master Data form checks if `ItemCode` starts with "A".
+This context menu is displayed on the Item Master Data form if `ItemCode` starts with "A".
 
 ```json
 {
@@ -142,7 +142,7 @@ This context menu on the Item Master Data form checks if `ItemCode` starts with 
   "Url": "https://www.onet.pl/",
   "Condition": {
     "SuppFormMode": -1,
-    "SQlCondition": "select case when Left(@ItemCode,1) ='A' then 1 else 0 end FROM DUMMY"
+    "SQLCondition": "SELECT CASE WHEN LEFT(@ItemCode, 1) = 'A' THEN 1 ELSE 0 END FROM DUMMY"
   },
   "Parameters": [
     {
@@ -154,3 +154,5 @@ This context menu on the Item Master Data form checks if `ItemCode` starts with 
   ]
 }
 ```
+
+This document ensures that each JSON configuration complies with SAP Business One requirements for seamless integration with external applications.
